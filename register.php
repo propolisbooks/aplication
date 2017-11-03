@@ -6,7 +6,6 @@
 
 	if (Input::exists()) {
 
-
 		// ovde fali dodatak za slucaj da je user vec registrovan ili da postoji mejl adresa u bazi
 
 		if (Token::check(Input::get('token'))) {
@@ -42,18 +41,7 @@
 						
 						$salt = Hash::salt(32);
 
-							/*
-						$polja = array(
-								'username' => Input::get('username'),
-								'password' => Hash::make(Input::get('password'), $salt),
-								'salt' => $salt,
-								'email' => Input::get('name'),
-								'joined' => date('Y-m-d H:i:s'),
-								'group' => 1
-								);	
-
-							*/		
-
+				
 						try {
 							$user->create(array(
 									'username' => Input::get('username'),
@@ -61,7 +49,7 @@
 									'salt' => $salt,
 									'email' => Input::get('email'),
 									'joined' => date('Y-m-d H:i:s'),
-									'priv' => 1
+									'privilege' => 1
 								));
 							} catch (Exception $e) {
 							die($e->getMessage());	///promeniti zbog funkcionalnosti i redirekta.
@@ -69,13 +57,7 @@
 					
 
 						Session::flash('message', 'You registered successfully!'); // eventualno promeniti
-
-						// ovo promeniti sa funkcijom za redirekt
-
-						Redirect::to('machia.php');
-						// header('Location: index.php');  	
-
-							
+						Redirect::to('profile.php');
 
 				} else {
 					foreach($validation->errors() as $error) {
@@ -86,6 +68,11 @@
 		} // end if (Token::check...)
 
 	}	// end if (Input::exists())
+
+
+
+
+include_once "templates/header.php";
 
 
 ?>
@@ -102,12 +89,29 @@
 </head>
 <body>
 
+		 <?php
+              if(Session::exists('message')) {
+                echo "<div>";
+                echo "<p>" . Session::flash('message') . "</p>";
+                echo "</div>";
+              }
+        ?>
+
+
+  <div class="jumbotron">
+  <div class="text-center">
+     <h2>Login</h2>
+  </div>
+  </div><!--.jumbotron -->
+
+<div class="row">
+
            
 
 		<div id="content">
 
 
-		<form action="" method="post">
+		<form action="register.php" method="post">
 			<div class="field">
 				<label for="username">Username</label>
 				<input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>" autocomplete="off"> 
@@ -128,7 +132,6 @@
 				<input type="text" name="email" value="<?php echo escape(Input::get('email')); ?>" id="email">
 			</div>
 
-
 			<input type="hidden" name="token" value="<?php echo Token::generate(); ?>" >
 			<input type="submit" value="Register" >
 
@@ -137,6 +140,13 @@
 
 		</div>
 
+		
+    <div class="col-md-3"></div>
 
-</body>
-</html>
+</div><!-- .row -->
+
+
+<?php echo $output; ?>
+
+<?php
+include_once "templates/footer.php";

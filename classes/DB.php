@@ -18,7 +18,7 @@
       private function __construct(){
           try {
               $this->_pdo = New PDO('mysql:host=' . Config::get('mysql/host') . ';dbname=' . Config::get('mysql/db'), Config::get('mysql/username'),Config::get('mysql/password'));    //standardni postupak  PDO(host-db name, username, password)  ... stavljeno x, y, z, a za pocetak
-               echo "connected";         // kao test da li je baza povezana
+              // echo "connected";         // kao test da li je baza povezana
           } catch(PDOException $e) {       
               die($e->getMessage());
           }
