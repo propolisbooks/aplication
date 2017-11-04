@@ -49,7 +49,11 @@
 									'salt' => $salt,
 									'email' => Input::get('email'),
 									'joined' => date('Y-m-d H:i:s'),
+<<<<<<< HEAD
+									'groups' => 1
+=======
 									'privilege' => 1
+>>>>>>> a3404daf3b959a766655116e6912ec19c9ca88b5
 								));
 							} catch (Exception $e) {
 							die($e->getMessage());	///promeniti zbog funkcionalnosti i redirekta.
