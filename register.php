@@ -61,7 +61,7 @@
 									'salt' => $salt,
 									'email' => Input::get('email'),
 									'joined' => date('Y-m-d H:i:s'),
-									'priv' => 1
+									'groups' => 1
 								));
 							} catch (Exception $e) {
 							die($e->getMessage());	///promeniti zbog funkcionalnosti i redirekta.
