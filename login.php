@@ -26,10 +26,10 @@ if(Input::exists()) {
 
           if ($login) {
             Session::flash('message', 'You logged in successfully!');
-            Redirect::to('');
+            Redirect::to('profile.php');
           } else {
             Session::flash('message', 'Sorry, log in failed!');
-            Redirect::to('');
+            Redirect::to('index.php');
             
           } 
 
