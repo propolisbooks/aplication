@@ -1,0 +1,17 @@
+h1{
+	text-align: center;
+}
+
+.welcome-buttons{
+	margin: 5px auto;
+}
+button {
+	margin:5px auto;
+	padding: 10px 10px;
+	
+}
+button:nth-child(1) {
+	margin-right: 30px;
+    background: red;
+    margin-left: 30%;
+}
